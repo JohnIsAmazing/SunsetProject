@@ -8,7 +8,8 @@ def main():
     #C0 - C2
     # For cloud coverage:
     #   O=overcast, B=broken, A=scattered, C=clear or unknown
-    s.clouds_horizon_high  = 'C' 
+    print('something stupid') #scott is adding something studpid to crash the program
+    s.clouds_horizon_high  = 'C'
     s.clouds_overhead_high = 'C'
     s.cloud_high_vertical_development = False
 
@@ -27,7 +28,7 @@ def main():
     s.contrails = False
     s.oat = 60 # Outside Air Temperature in °F
     s.wind = 'lots' # possible values 'none','calm','lots'
-    
+
     #C4
     s.overall_visibility = 5 # possible values 0,1,2,3,4
     s.virga = False
@@ -45,7 +46,7 @@ def main():
     s.unusual_island_shapes = False
     s.malibu_reflections = False
     s.multi_color_ocean = False
-    s.low_clouds_were_above = False    
+    s.low_clouds_were_above = False
 
     #C7, Faircove only
     s.see_point_dume = True
@@ -70,7 +71,7 @@ def main():
 
 class sunset:
     """ Generates a code for your observed sunset OR generate a sunset description from your code. """
-    
+
     # 2019-01-01 Version 1.00
     #
     # 2019-01-05 Version 1.01
@@ -110,125 +111,125 @@ class sunset:
     @property
     def cloud_high_vertical_development(self): return self.code_chars[0].binary_list[0]
     @cloud_high_vertical_development.setter
-    def cloud_high_vertical_development(self, value): self.code_chars[0].binary_list_insert(value=str(int(value)),position=0)      
+    def cloud_high_vertical_development(self, value): self.code_chars[0].binary_list_insert(value=str(int(value)),position=0)
 
     @property
     def clouds_horizon_high(self): return self.code_chars[0].binary_list[1] + self.code_chars[0].binary_list[2]
     @clouds_horizon_high.setter
-    def clouds_horizon_high(self, value): 
-        if value == 'O': 
+    def clouds_horizon_high(self, value):
+        if value == 'O':
             self.code_chars[0].binary_list_insert(value='0',position=1)
             self.code_chars[0].binary_list_insert(value='0',position=2)
-        elif value == 'B': 
+        elif value == 'B':
             self.code_chars[0].binary_list_insert(value='0',position=1)
             self.code_chars[0].binary_list_insert(value='1',position=2)
-        elif value == 'A': 
+        elif value == 'A':
             self.code_chars[0].binary_list_insert(value='1',position=1)
             self.code_chars[0].binary_list_insert(value='0',position=2)
-        elif value == 'C': 
+        elif value == 'C':
             self.code_chars[0].binary_list_insert(value='1',position=1)
             self.code_chars[0].binary_list_insert(value='1',position=2)
 
     @property
     def clouds_overhead_high(self): return self.code_chars[0].binary_list[3] + self.code_chars[0].binary_list[4]
     @clouds_overhead_high.setter
-    def clouds_overhead_high(self, value): 
-        if value == 'C': 
+    def clouds_overhead_high(self, value):
+        if value == 'C':
             self.code_chars[0].binary_list_insert(value='0',position=3)
             self.code_chars[0].binary_list_insert(value='0',position=4)
-        elif value == 'A': 
+        elif value == 'A':
             self.code_chars[0].binary_list_insert(value='0',position=3)
             self.code_chars[0].binary_list_insert(value='1',position=4)
-        elif value == 'B': 
+        elif value == 'B':
             self.code_chars[0].binary_list_insert(value='1',position=3)
             self.code_chars[0].binary_list_insert(value='0',position=4)
-        elif value == 'O': 
+        elif value == 'O':
             self.code_chars[0].binary_list_insert(value='1',position=3)
             self.code_chars[0].binary_list_insert(value='1',position=4)
 
     @property
     def cloud_med_vertical_development(self): return self.code_chars[1].binary_list[0]
     @cloud_med_vertical_development.setter
-    def cloud_med_vertical_development(self, value): 
+    def cloud_med_vertical_development(self, value):
         if value:
             self.code_chars[1].binary_list_insert(value='0')
         else:
-            self.code_chars[1].binary_list_insert(value='1')    
+            self.code_chars[1].binary_list_insert(value='1')
 
     @property
     def clouds_horizon_med(self): return self.code_chars[1].binary_list[1] + self.code_chars[1].binary_list[2]
     @clouds_horizon_med.setter
-    def clouds_horizon_med(self, value): 
-        if value == 'A': 
+    def clouds_horizon_med(self, value):
+        if value == 'A':
             self.code_chars[1].binary_list_insert(value='0',position=1)
             self.code_chars[1].binary_list_insert(value='0',position=2)
-        elif value == 'C': 
+        elif value == 'C':
             self.code_chars[1].binary_list_insert(value='0',position=1)
             self.code_chars[1].binary_list_insert(value='1',position=2)
-        elif value == 'O': 
+        elif value == 'O':
             self.code_chars[1].binary_list_insert(value='1',position=1)
             self.code_chars[1].binary_list_insert(value='0',position=2)
-        elif value == 'B': 
+        elif value == 'B':
             self.code_chars[1].binary_list_insert(value='1',position=1)
             self.code_chars[1].binary_list_insert(value='1',position=2)
 
     @property
     def clouds_overhead_med(self): return self.code_chars[1].binary_list[3] + self.code_chars[1].binary_list[4]
     @clouds_overhead_med.setter
-    def clouds_overhead_med(self, value): 
-        if value == 'O': 
+    def clouds_overhead_med(self, value):
+        if value == 'O':
             self.code_chars[1].binary_list_insert(value='0',position=3)
             self.code_chars[1].binary_list_insert(value='0',position=4)
-        elif value == 'C': 
+        elif value == 'C':
             self.code_chars[1].binary_list_insert(value='0',position=3)
             self.code_chars[1].binary_list_insert(value='1',position=4)
-        elif value == 'B': 
+        elif value == 'B':
             self.code_chars[1].binary_list_insert(value='1',position=3)
             self.code_chars[1].binary_list_insert(value='0',position=4)
-        elif value == 'A': 
+        elif value == 'A':
             self.code_chars[1].binary_list_insert(value='1',position=3)
             self.code_chars[1].binary_list_insert(value='1',position=4)
 
     @property
     def cloud_low_vertical_development(self): return self.code_chars[2].binary_list[0]
     @cloud_low_vertical_development.setter
-    def cloud_low_vertical_development(self, value): 
+    def cloud_low_vertical_development(self, value):
         if value:
             self.code_chars[2].binary_list_insert(value='0')
         else:
-            self.code_chars[2].binary_list_insert(value='1')   
+            self.code_chars[2].binary_list_insert(value='1')
 
     @property
     def clouds_horizon_low(self): return self.code_chars[2].binary_list[1] + self.code_chars[2].binary_list[2]
     @clouds_horizon_low.setter
-    def clouds_horizon_low(self, value): 
-        if value == 'A': 
+    def clouds_horizon_low(self, value):
+        if value == 'A':
             self.code_chars[2].binary_list_insert(value='0',position=1)
             self.code_chars[2].binary_list_insert(value='0',position=2)
-        elif value == 'B': 
+        elif value == 'B':
             self.code_chars[2].binary_list_insert(value='0',position=1)
             self.code_chars[2].binary_list_insert(value='1',position=2)
-        elif value == 'O': 
+        elif value == 'O':
             self.code_chars[2].binary_list_insert(value='1',position=1)
             self.code_chars[2].binary_list_insert(value='0',position=2)
-        elif value == 'C': 
+        elif value == 'C':
             self.code_chars[2].binary_list_insert(value='1',position=1)
             self.code_chars[2].binary_list_insert(value='1',position=2)
 
     @property
     def clouds_overhead_low(self): return self.code_chars[2].binary_list[3] + self.code_chars[2].binary_list[4]
     @clouds_overhead_low.setter
-    def clouds_overhead_low(self, value): 
-        if value == 'B': 
+    def clouds_overhead_low(self, value):
+        if value == 'B':
             self.code_chars[2].binary_list_insert(value='0',position=3)
             self.code_chars[2].binary_list_insert(value='0',position=4)
-        elif value == 'A': 
+        elif value == 'A':
             self.code_chars[2].binary_list_insert(value='0',position=3)
             self.code_chars[2].binary_list_insert(value='1',position=4)
-        elif value == 'O': 
+        elif value == 'O':
             self.code_chars[2].binary_list_insert(value='1',position=3)
             self.code_chars[2].binary_list_insert(value='0',position=4)
-        elif value == 'C': 
+        elif value == 'C':
             self.code_chars[2].binary_list_insert(value='1',position=3)
             self.code_chars[2].binary_list_insert(value='1',position=4)
 
@@ -246,8 +247,8 @@ class sunset:
     @wind.setter
     def wind(self, value):
         self.__wind = value
-        self.set_comfort_zone(self.__wind,self.__oat)  
-    
+        self.set_comfort_zone(self.__wind,self.__oat)
+
     @property
     def comfort_zone(self): return self.code_chars[3].binary_list[0]
     #@comfort_zone.setter
@@ -255,7 +256,7 @@ class sunset:
         cz = False
         if obsv_wind == 'none' and obsv_oat > 70 and obsv_oat < 81: cz = True
         if obsv_wind == 'calm' and obsv_oat > 74 and obsv_oat < 86: cz = True
-        self.code_chars[3].binary_list_insert(value=str(int(cz)),position=0)          
+        self.code_chars[3].binary_list_insert(value=str(int(cz)),position=0)
 
     @property
     def horizon_visible(self): return self.code_chars[3].binary_list[1]
@@ -271,7 +272,7 @@ class sunset:
     def green_flash(self, value):
         self.code_chars[3].binary_list_insert(value=str(int(value)),position=2)
         print (self.green_flash)
-    
+
     @property
     def haze_or_smoke(self): return self.code_chars[3].binary_list[2]
     @haze_or_smoke.setter
@@ -282,8 +283,8 @@ class sunset:
     @contrails.setter
     def contrails(self, value): self.code_chars[3].binary_list_insert(value=str(int(value)),position=4)
 
-    # C4 visbility and weather 
-    #   
+    # C4 visbility and weather
+    #
     @property
     def virga(self): return self.code_chars[4].binary_list[0]
     @virga.setter
@@ -292,17 +293,17 @@ class sunset:
     @property
     def overall_visibility(self): return self.code_chars[4].binary_list[1] + self.code_chars[4].binary_list[2]
     @overall_visibility.setter
-    def overall_visibility(self, value): 
-        if   value <= 1: 
+    def overall_visibility(self, value):
+        if   value <= 1:
             self.code_chars[4].binary_list_insert(value='0',position=1)
             self.code_chars[4].binary_list_insert(value='0',position=2)
-        elif value == 2: 
+        elif value == 2:
             self.code_chars[4].binary_list_insert(value='0',position=1)
             self.code_chars[4].binary_list_insert(value='1',position=2)
-        elif value == 3: 
+        elif value == 3:
             self.code_chars[4].binary_list_insert(value='1',position=1)
             self.code_chars[4].binary_list_insert(value='0',position=2)
-        elif value >= 4: 
+        elif value >= 4:
             self.code_chars[4].binary_list_insert(value='1',position=1)
             self.code_chars[4].binary_list_insert(value='1',position=2)
 
@@ -350,7 +351,7 @@ class sunset:
     def unusual_island_shapes(self): return self.code_chars[6].binary_list[0]
     @unusual_island_shapes.setter
     def unusual_island_shapes(self, value): self.code_chars[6].binary_list_insert(value=str(int(value)),position=0)
-    
+
     @property
     def low_clouds_were_above(self): return self.code_chars[6].binary_list[1]
     @low_clouds_were_above.setter
@@ -397,22 +398,22 @@ class sunset:
     #
     @property
     def sunset_code_faircove(self):
-        code_string = 'J&K Sunset Code V1.03(F): ' + self.sunset_code_hexish[:6] + r'/' +  self.sunset_code_hexish[6:8] 
+        code_string = 'J&K Sunset Code V1.03(F): ' + self.sunset_code_hexish[:6] + r'/' +  self.sunset_code_hexish[6:8]
         if self.green_flash:
             code_string += '-GF'
         return code_string
 
     @property
     def sunset_code_generic(self):
-        code_string = 'J&K Sunset Code V1.03(G): ' + self.sunset_code_hexish[:6] 
+        code_string = 'J&K Sunset Code V1.03(G): ' + self.sunset_code_hexish[:6]
         if self.green_flash:
             code_string += '-GF'
-        
+
         return code_string
 
     @property
     def sunset_code_hexish(self):
-        code_h = ''  
+        code_h = ''
         for c in self.code_chars:
             code_h += c.hexish
         return code_h
@@ -425,11 +426,11 @@ class sunset:
         for c in value:
             b = self.HexPlus(c)
             self.code_chars.append(b)
-            #bs += c.binary_string 
+            #bs += c.binary_string
 
     @property
     def sunset_code_binary(self):
-        code_b = ''  
+        code_b = ''
         for c in self.code_chars:
             code_b += c.binary_string + ' '
         return code_b
@@ -469,8 +470,8 @@ class sunset:
         decode_text += 'Anacapa and Santa Cruz Islands were visible. ' if self.see_anacapa == '1' else ''
         decode_text += 'Santa Barbara Island was visible. ' if self.see_sb_island == '1' else ''
         decode_text += 'San Nicolas Island was visible behind Santa Barbara island. ' if self.see_san_nic_island == '1' else ''
- 
- 
+
+
         return decode_text
 
     @property
@@ -484,7 +485,7 @@ class sunset:
             self.clouds_overhead_med +
             self.clouds_horizon_low +
             self.clouds_overhead_low) == '110001011111': return 'The sky was clear of clouds. '
-        
+
         if   self.clouds_horizon_high == '00': descr += 'There was a solid ceiling of high clouds on the horizon. '
         elif self.clouds_horizon_high == '01': descr += 'There were broken high clouds on the horizon. '
         elif self.clouds_horizon_high == '10': descr += 'There were scattered high clouds on the horizon. '
@@ -509,13 +510,13 @@ class sunset:
         elif self.clouds_overhead_low == '01': descr += 'There were low scattered clouds overhead. '
         elif self.clouds_overhead_low == '10': descr += 'There was a solid ceiling of low clouds overhead. '
 
-        return descr 
+        return descr
 
 
     class HexPlus:
-        # Creates and maintains a "hexish" character based on four binary bits '0000' plus an 
+        # Creates and maintains a "hexish" character based on four binary bits '0000' plus an
         # extra bit. The four bits define the range 0 - F. The extra bit, if = '1' bumps the character
-        # up one letter in the alphabet creating a hexish character. For example 10000 is 0(hex) bumped 
+        # up one letter in the alphabet creating a hexish character. For example 10000 is 0(hex) bumped
         # up to G(hexish) and 11101 is D(hex) bumped up to U(hexish). O (oh) is skipped because it
         # looks too much like zero so the last hexish character is W, not V. This makes for more interesting
         # sunset codes.
@@ -528,19 +529,19 @@ class sunset:
                 self.__binary_string = value
             elif isinstance(value, list) and len(value) == 5: # its a binary list
                 for p in value:
-                    self.__binary_string += p 
+                    self.__binary_string += p
             else: # its an error
                 self.__binary_string = 'error'
 
         @property
-        def binary_string(self): 
+        def binary_string(self):
             return self.__binary_string
         @binary_string.setter
         def binary_string(self, value):
             self.__binary_string = value
 
         @property
-        def binary_list(self): 
+        def binary_list(self):
             return_list = []
             for p in self.__binary_string:
                 return_list.append(p)
@@ -549,10 +550,10 @@ class sunset:
         def binary_list(self, value):
             self.__binary_string = ''
             for p in value:
-                self.__binary_string += p 
+                self.__binary_string += p
 
         @property
-        def hexish(self): 
+        def hexish(self):
             return self.bin2hexish(self.__binary_string)
         @hexish.setter
         def hexish(self, value):
